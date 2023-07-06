@@ -7,3 +7,5 @@ const dbconnect = require('./config/dbconnect')
 
  const port = 3000;
 app.listen(port,() => console.log(`server is listening on port ${port}..`))
+
+require('./routes/school_trade')(app)
