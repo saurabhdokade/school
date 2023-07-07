@@ -6,4 +6,5 @@ module.exports =function(app){
     app.get("/api/get_school",school.getAllschool);
     app.get("/api/get_school/:id", school.getschoolDetails);
     app.delete("/api/school/:id", school.deleteschool);
+    app.put("/api/school/:id", school.updateschool);
 }
