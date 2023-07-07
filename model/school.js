@@ -17,3 +17,34 @@ exports.getAllschool = (req, res) => {
     })
 };
 
+exports.getschoolDetails = (req, res) => {
+    var search = req.params;
+    var where_str = "";
+
+    if (typeof search == "object") {
+        var col_names = Object.keys(search);
+        col_names.forEach(function (arr) {
+            if (search[arr]) {
+                where_str += " and " + arr + " = '" + search[arr] + "'"
+            }
+        })
+    }
+
+    var sql = "SELECT * FROM `school` WHERE 1 " + where_str + " "
+    console.log("SELECT", sql)
+    db.query(sql, function (err, result) {
+        console.log("Result", result)
+        if (result != "") {
+            res.status(201).json({
+                result: result,
+                status: 201,
+                message:'school is working fine'
+            });
+        } else {
+            res.status(404).json({
+                message: 'school is not found',
+                status: 404
+            })
+        }
+    })
+};
