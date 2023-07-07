@@ -10,3 +10,10 @@ console.log("model is working fine");
     })
 };
 
+exports.getAllschool = (req, res) => {
+   console.log("model is working successfully")
+    res.send({
+        message:"model is working successfully"
+    })
+};
+
