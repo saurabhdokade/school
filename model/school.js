@@ -48,3 +48,28 @@ exports.getschoolDetails = (req, res) => {
         }
     })
 };
+
+exports.deleteschool = (req, res) => {
+    var school_id = req.params.id;
+
+    var result1 = connection.query("SELECT id FROM school WHERE id = " + school_id + " ");
+    console.log(result1)
+    if (result1 != "") {
+        var sql = "DELETE FROM school WHERE `id` = " +school_id + " "
+
+        db.query(sql, function (err, result) {
+
+            if (!err) {
+                res.status(200).json({
+                    message: 'school deleted successfully'
+                });
+            }
+        })
+    } else {
+        res.status(405).json({
+            message: 'school  not found',
+            status: 405
+        });
+    }
+
+};
